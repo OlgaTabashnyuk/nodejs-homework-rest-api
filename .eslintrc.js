@@ -7,9 +7,10 @@ module.exports = {
   extends: ['standard'],
   parserOptions: {
     ecmaVersion: 12,
-  },
+  }, 
   rules: {
-    'comma-dangle': 'off',
+    'comma-dangle': 'on',
     'space-before-function-paren': 'off',
   },
+
 }
