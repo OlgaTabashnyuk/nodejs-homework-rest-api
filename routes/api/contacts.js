@@ -15,4 +15,10 @@ router.patch('/:contactId', async (req, res, next) => {
   res.json({ message: 'template message' })
 })
 
+router.put('/:contactId', express.json(), ctrl.update
+
+// async (req, res, next) => {
+//   res.json({ message: 'template message' })
+// }
+)
 module.exports = router

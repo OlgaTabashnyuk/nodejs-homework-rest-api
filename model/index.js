@@ -1,5 +1,5 @@
 const fs = require('fs/promises')
-// const contacts = require('./contacts.json')
+
 const path = require('path');
 const shortid = require('shortid');
 
@@ -27,10 +27,11 @@ const getContactById = async (contactId) => {
   };
 
 const removeContact = async (contactId) => {
-  // const numberId = Number(contactId)
+  const numberId = Number(contactId)
     const data = await listContacts()
     const filteredContacts = data.filter(
-      (contact) => !contactId.include(contact.id)
+      (contact) => contact.id !== numberId
+   
     );
     try {
       fs.writeFile(contactsPath, `${JSON.stringify(filteredContacts)}`, (err) => {
@@ -41,6 +42,7 @@ const removeContact = async (contactId) => {
     }
 
     return filteredContacts;
+      
 };
 
 const addContact = async (body) => {
@@ -61,7 +63,24 @@ const addContact = async (body) => {
 }
 
 
-const updateContact = async (contactId, body) => {};
+const updateContact = async (contactId, body) => {
+  const  contacts = await listContacts()
+  const index = contacts.findIndex(contact => contact.id == contactId)
+    if(index === -1) return index;
+    contacts[index] = {...contacts[index] , ...body}
+   try {
+     fs.writeFile(contactsPath, `${JSON.stringify(contacts)}`, (error) => {
+       throw error
+     } )
+   } catch (error) {
+     console.log(error);
+   }
+      return contacts[index]
+
+}
+    
+
+
 
 module.exports = {
   listContacts,
