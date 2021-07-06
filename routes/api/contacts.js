@@ -8,17 +8,13 @@ router.get('/', ctrl.getAll)
 router.get('/:contactId', ctrl.getById)
 
 router.post('/', express.json(), ctrl.addNewContact)
-// ========
+
 router.delete('/:contactId', express.json(), ctrl.deleteContact)
 
 router.patch('/:contactId', async (req, res, next) => {
   res.json({ message: 'template message' })
 })
 
-router.put('/:contactId', express.json(), ctrl.update
+router.put('/:contactId', express.json(), ctrl.update)
 
-// async (req, res, next) => {
-//   res.json({ message: 'template message' })
-// }
-)
 module.exports = router

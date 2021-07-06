@@ -13,7 +13,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/contacts", contactsRouter); //middleware , которая обрабатывает все запросы, приходящие на адрес "/api/contacts",с помощью обработчиков, которые находятся в contactsRouter(./routes/api/contacts)
+app.use("/api/contacts", contactsRouter); 
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

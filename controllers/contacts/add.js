@@ -1,12 +1,6 @@
 const {addContact} = require('../../model')
 const contactSchema = require('../../utils/contactsSchema')
-// const Joi = require('joi')
 
-// const contactSchema = Joi.object({
-//   name: Joi.string().min(2).required(),
-//   phone: Joi.number().min(0).required()
-// })
-// const contacts = require('../../model')
 const addNewContact = async (req, res, next) => {
   const {error} = contactSchema.validate(req.body)
     if(error) {

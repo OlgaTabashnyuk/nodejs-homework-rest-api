@@ -1,7 +1,7 @@
 const {listContacts} = require('../../model')
 
 const getAll = async(req, res, next) => {
-//  console.log(req.query);
+
     try {
     const contacts = await listContacts()
     res.json({
