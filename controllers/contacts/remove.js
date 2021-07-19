@@ -1,26 +1,24 @@
-const {removeContact} = require('../../model')
+const { Contact } = require('../../utils/models');
 
 const deleteContact = async (req, res, next) => {
-    try { 
-    const {contactId} = req.params;
-        const filteredContacts = await removeContact(contactId)
-        console.log("filteredContacts", filteredContacts);
-if(filteredContacts) {
-     res.json({
-        status: "success",
+  const { contactId } = req.params;
+  try {
+    const filteredContacts = await Contact.findByIdAndDelete(contactId);
+    if (filteredContacts) {
+      res.json({
+        status: 'success',
         code: 200,
-        message:  "contact deleted"
-    })
-} else {
-    res.status(200).json({
-      status: 'success',
-      code: 200,
-      message: 'No Content'
-    })
+        message: 'contact deleted',
+      });
+    } else {
+      res.status(200).json({
+        status: 'success',
+        code: 200,
+        message: 'No Content',
+      });
+    }
+  } catch (error) {
+    next(error);
   }
-}
-catch (error) {
-    next(error)
-  }
-}
+};
 module.exports = deleteContact;

@@ -1,6 +1,6 @@
 const { Contact } = require('../../utils/models');
 
-const update = async (req, res, next) => {
+const updateStatusContact = async (req, res, next) => {
   const { body } = req;
   const { contactId } = req.params;
 
@@ -8,6 +8,13 @@ const update = async (req, res, next) => {
     const result = await Contact.findByIdAndUpdate(contactId, body, {
       new: true,
     });
+    if (!result) {
+      res.json({
+        status: 'error',
+        code: 400,
+        message: 'missing field "favorite"',
+      });
+    }
     res.json({
       status: 'success',
       code: 200,
@@ -20,4 +27,4 @@ const update = async (req, res, next) => {
   }
 };
 
-module.exports = update;
+module.exports = updateStatusContact;
