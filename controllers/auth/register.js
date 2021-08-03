@@ -1,4 +1,5 @@
 const { user: service } = require('../../services');
+const gravatar = require('gravatar');
 
 const register = async (req, res, next) => {
   const { email, password } = req.body;
@@ -14,8 +15,8 @@ const register = async (req, res, next) => {
       });
       return;
     }
-
-    await service.add({ email, password });
+    const avatarURL = gravatar.url(email);
+    await service.add({ email, password, avatarURL });
     res.status(201).json({
       status: 'success',
       code: 201,
