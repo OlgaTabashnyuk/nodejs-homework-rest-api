@@ -6,8 +6,8 @@ const getOne = filter => {
   return User.findOne(filter);
 };
 
-const add = ({ email, password }) => {
-  const newUser = new User({ email });
+const add = ({ password, ...others }) => {
+  const newUser = new User(others);
   newUser.setPassword(password);
   return newUser.save();
 };

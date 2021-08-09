@@ -25,6 +25,14 @@ const userSchema = Schema({
     type: String,
     default: null,
   },
+  verify: {
+    type: Boolean,
+    default: false,
+  },
+  verifyCode: {
+    type: String,
+    required: true,
+  },
 });
 
 userSchema.methods.setPassword = function (password) {
